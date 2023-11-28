@@ -1,0 +1,8 @@
+{
+  "name": "social_network",
+  "version": "1.0.0",
+  "description": "A mini social network",
+  "main": "src/server.ts",
+  "author": "TrungN",
+  "license": "MIT"
+}
