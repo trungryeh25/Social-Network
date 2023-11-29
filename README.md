@@ -32,3 +32,7 @@
 ### Lesson 15
 
 - Setup Middlewares
+
+### Lesson 16
+
+- validate environmental variable
