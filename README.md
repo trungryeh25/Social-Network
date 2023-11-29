@@ -40,3 +40,7 @@
 ### Lesson 17
 
 - Declare module in TypeScript
+
+### Lesson 18
+
+- Handle error middleware
