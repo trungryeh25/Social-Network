@@ -36,3 +36,7 @@
 ### Lesson 16
 
 - validate environmental variable
+
+### Lesson 17
+
+- Declare module in TypeScript
