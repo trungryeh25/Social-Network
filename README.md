@@ -60,3 +60,7 @@
 ### Lesson 23
 
 - Create Register user API
+
+### Lesson 24 
+
+- Validate input api

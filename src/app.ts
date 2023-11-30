@@ -53,9 +53,10 @@ class App{
                 })
             );
         }
-        this.app.use(errorMiddleware);
+        
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true}));
+        this.app.use(errorMiddleware);
     }
 
     private connectToDatabase(){
