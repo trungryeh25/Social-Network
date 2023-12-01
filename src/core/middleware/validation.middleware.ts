@@ -5,7 +5,8 @@ import { HttpException } from "@core/exceptions";
 
 const validationMiddleware = (type: any, skipMissingProperties = false): RequestHandler =>{
     return (req: Request, res: Response, next: NextFunction) =>{
-        validate(plainToClass(type, req.body), {skipMissingProperties}).then((errors: ValidationError[])=>{
+        validate(plainToClass(type, req.body), {skipMissingProperties})
+        .then((errors: ValidationError[])=>{
             if(errors.length>0){
                 const messages = errors.map((error: ValidationError)=>{
                     return Object.values(error.constraints!);
