@@ -68,3 +68,7 @@
 ### Lesson 25
 
 - Create API login user
+
+### Lesson 26 
+
+- Using middleware for authorization 
