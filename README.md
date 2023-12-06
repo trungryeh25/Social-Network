@@ -72,3 +72,7 @@
 ### Lesson 26 
 
 - Using middleware for authorization 
+
+### Lesson 27
+
+- Create GetUserById API and UpdateUser API

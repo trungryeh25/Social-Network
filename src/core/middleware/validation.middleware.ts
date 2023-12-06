@@ -12,6 +12,8 @@ const validationMiddleware = (type: any, skipMissingProperties = false): Request
                     return Object.values(error.constraints!);
                 }).join(", ");
                 next(new HttpException(400, messages));
+            } else{
+                next();
             }
         })
     }
