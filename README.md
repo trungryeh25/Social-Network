@@ -76,3 +76,11 @@
 ### Lesson 27
 
 - Create GetUserById API and UpdateUser API
+
+### Lesson 28
+
+- Create an API endpoint named `GetAllUser` with pagination
+
+### Lesson 29
+
+- Delete `user api`

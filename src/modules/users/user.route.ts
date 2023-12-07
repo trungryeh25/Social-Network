@@ -3,6 +3,7 @@ import { Router } from "express";
 import UsersController from "./users.controller";
 import validationMiddleware from "@core/middleware/validation.middleware";
 import RegisterDto from "./dtos/register.dto";
+import { authMiddleware } from "@core/middleware";
 
 
 export default class UsersRoute implements Route{
@@ -23,8 +24,18 @@ export default class UsersRoute implements Route{
         this.router.put(this.path + '/:id',
             validationMiddleware(RegisterDto, true),
             this.usersController.updateUser);
-        
+
         this.router.get(this.path + '/:id',
             this.usersController.getUserById);
+
+        this.router.get(this.path,
+            this.usersController.getAll);
+
+        this.router.get(this.path + '/paging/:page',
+            this.usersController.getAllPaging);
+
+        this.router.get(this.path + '/:id',
+            authMiddleware,
+            this.usersController.deleteUser);
     };
 }

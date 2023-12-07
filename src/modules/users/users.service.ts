@@ -8,6 +8,7 @@ import gravatar from 'gravatar';
 import bcryptjs from 'bcryptjs';
 import IUser from './users.interface';
 import jwt from 'jsonwebtoken';
+import { IPagination } from '@core/interfaces';
 
 class UserService{
     
@@ -93,6 +94,42 @@ class UserService{
         }
 
         return user;
+    }
+
+    public async getAll(): Promise<IUser[]>{
+        const users = await this.userSchema.find().exec();
+
+        return users;
+    }
+
+    public async getAllPaging(keyword: string, page: number): Promise<IPagination<IUser>>{
+        const pageSize: number = Number(process.env.PAGE_SIZE) || 10;
+        let query = {};
+        if(keyword){
+            query = {
+                $or:[
+                    {email: keyword}, 
+                    {firstName: keyword}, 
+                    {lastName: keyword},
+                ],
+            };
+        }
+
+        const users = await this.userSchema.find(query).skip((page - 1) * pageSize).limit(pageSize).exec();
+        const rowCount = await this.userSchema.find(query).countDocuments().exec();
+
+        return {
+            total: rowCount,
+            page: page,
+            pageSize: pageSize,
+            items: users,
+        } as IPagination<IUser>; 
+    }
+
+    public async deleteUser(userId: string): Promise<IUser>{
+        const deletedUser = await this.userSchema.findByIdAndDelete(userId).exec();
+        if (!deletedUser) throw new HttpException(409, 'Empty! Nothing to delete.');
+        return deletedUser;
     }
 
     private createToken(user: IUser): TokenData{
